@@ -1,5 +1,6 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
+import Button from '../components/button'
 
 const Home: NextPage = () => {
   return (
@@ -10,7 +11,11 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main>Ok</main>
+      <main>
+        <Button size="big">Big Button</Button>
+        <Button size="small">Small Button</Button>
+        <Button>Normal Button</Button>
+      </main>
 
       <footer></footer>
     </div>
