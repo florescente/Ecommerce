@@ -1,6 +1,6 @@
 import type { NextPage } from 'next'
 import Head from 'next/head'
-import Button from '../components/button'
+import Button from '../stories/Button'
 
 const Home: NextPage = () => {
   return (
