@@ -3,7 +3,21 @@ import Head from 'next/head'
 import Navbar from '../stories/Navbar'
 import { getSession } from 'next-auth/react'
 
-const Home: NextPage<{ data: string }> = ({ data }) => {
+interface User {
+  name: string
+  email: string
+  image: string
+}
+
+interface Session {
+  user: User
+  expires: string
+}
+
+const Home: NextPage<{ data: string; session: Session }> = ({
+  data,
+  session,
+}) => {
   return (
     <div>
       <Head>
@@ -15,6 +29,14 @@ const Home: NextPage<{ data: string }> = ({ data }) => {
       <main>
         <Navbar />
         <h1>{data}</h1>
+        {session && (
+          <>
+            <h1>{session.user.name}</h1>
+            <h1>{session.user.email}</h1>
+            <h1>{session.user.image}</h1>
+            <h1>{session.expires}</h1>
+          </>
+        )}
       </main>
 
       <footer></footer>
