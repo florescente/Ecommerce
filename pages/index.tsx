@@ -1,7 +1,9 @@
-import type { NextPage } from 'next'
+import type { GetServerSideProps, NextPage } from 'next'
 import Head from 'next/head'
+import Navbar from '../stories/Navbar'
+import { getSession } from 'next-auth/react'
 
-const Home: NextPage = () => {
+const Home: NextPage<{ data: string }> = ({ data }) => {
   return (
     <div>
       <Head>
@@ -10,11 +12,24 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main>o</main>
+      <main>
+        <Navbar />
+        <h1>{data}</h1>
+      </main>
 
       <footer></footer>
     </div>
   )
+}
+
+export const getServerSideProps: GetServerSideProps = async (ctx) => {
+  const session = await getSession(ctx)
+  return {
+    props: {
+      session,
+      data: session ? 'List of 100 personalizedblogs' : 'List of free blogs',
+    },
+  }
 }
 
 export default Home
