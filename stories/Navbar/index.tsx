@@ -1,5 +1,20 @@
 import { signIn, signOut, useSession } from 'next-auth/react'
 import Link from 'next/link'
+import { styled } from '../../styles/stitches.config'
+import Avatar from '../Avatar'
+
+export const Nav = styled('ul', {
+  display: 'flex',
+  alignItems: 'center',
+  listStyle: 'none',
+  backgroundColor: 'Azure',
+  paddingTop: 8,
+  paddingBottom: 8,
+})
+
+export const NavItem = styled('li', {
+  marginLeft: 20,
+})
 
 function Navbar() {
   const { data: session, status } = useSession()
@@ -9,35 +24,35 @@ function Navbar() {
   }
   if (status === 'authenticated' && session) {
     return (
-      <ul>
-        <li>{session.user!.name}</li>
-        <li>{session.user!.email}</li>
-        <li>
-          <img src={session.user!.image!} alt="profile" />
-        </li>
-        <li>{session.expires}</li>
-        <li>
+      <Nav>
+        <NavItem>{session.user!.name}</NavItem>
+        <NavItem>{session.user!.email}</NavItem>
+        <NavItem>
+          <Avatar src={session.user!.image!} alt="profile" />
+        </NavItem>
+        <NavItem>{session.expires}</NavItem>
+        <NavItem>
           <Link href="/second">Second Page</Link>
-        </li>
-        <li>
+        </NavItem>
+        <NavItem>
           <button type="button" onClick={() => signOut()}>
             Sign Out
           </button>
-        </li>
-      </ul>
+        </NavItem>
+      </Nav>
     )
   }
   return (
-    <ul>
-      <li>
+    <Nav>
+      <NavItem>
         <Link href="/second">Second Page</Link>
-      </li>
-      <li>
+      </NavItem>
+      <NavItem>
         <button type="button" onClick={() => signIn()}>
           Sign In
         </button>
-      </li>
-    </ul>
+      </NavItem>
+    </Nav>
   )
 }
 
