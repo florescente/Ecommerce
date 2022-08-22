@@ -2,6 +2,7 @@ import { signIn, signOut, useSession } from 'next-auth/react'
 import Link from 'next/link'
 import { styled } from '../../styles/stitches.config'
 import Avatar from '../Avatar'
+import Button from '../Button'
 
 export const Nav = styled('ul', {
   display: 'flex',
@@ -35,9 +36,9 @@ function Navbar() {
           <Link href="/second">Second Page</Link>
         </NavItem>
         <NavItem>
-          <button type="button" onClick={() => signOut()}>
+          <Button type="button" size="small" onClick={() => signOut()}>
             Sign Out
-          </button>
+          </Button>
         </NavItem>
       </Nav>
     )
@@ -48,9 +49,9 @@ function Navbar() {
         <Link href="/second">Second Page</Link>
       </NavItem>
       <NavItem>
-        <button type="button" onClick={() => signIn()}>
+        <Button type="button" size="small" onClick={() => signIn()}>
           Sign In
-        </button>
+        </Button>
       </NavItem>
     </Nav>
   )
