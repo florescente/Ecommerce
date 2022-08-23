@@ -3,18 +3,20 @@ import Link from 'next/link'
 import { styled } from '../../styles/stitches.config'
 import Avatar from '../Avatar'
 import Button from '../Button'
+import { Menu, MenuItem, Menutrigger, MenuSeparator, MenuInside } from '../Menu'
 
-export const Nav = styled('ul', {
+export const Nav: any = styled('ul', {
   display: 'flex',
   alignItems: 'center',
   listStyle: 'none',
   backgroundColor: 'Azure',
   paddingTop: 8,
   paddingBottom: 8,
+  justifyContent: 'space-between',
 })
 
-export const NavItem = styled('li', {
-  marginLeft: 20,
+export const NavItem: any = styled('li', {
+  display: 'flex',
 })
 
 function Navbar() {
@@ -26,19 +28,26 @@ function Navbar() {
   if (status === 'authenticated' && session) {
     return (
       <Nav>
-        <NavItem>{session.user!.name}</NavItem>
-        <NavItem>{session.user!.email}</NavItem>
-        <NavItem>
-          <Avatar src={session.user!.image!} alt="profile" />
-        </NavItem>
-        <NavItem>{session.expires}</NavItem>
         <NavItem>
           <Link href="/second">Second Page</Link>
         </NavItem>
         <NavItem>
-          <Button type="button" size="small" onClick={() => signOut()}>
-            Sign Out
-          </Button>
+          <Menu>
+            <Menutrigger>
+              <Avatar src={session.user!.image!} alt="profile" />
+            </Menutrigger>
+            <MenuInside>
+              <MenuItem>{session.user!.name}</MenuItem>
+              <MenuItem>{session.user!.email}</MenuItem>
+              <MenuSeparator />
+              <MenuItem>{session.expires}</MenuItem>
+              <MenuItem>
+                <Button type="button" size="small" onClick={() => signOut()}>
+                  Sign Out
+                </Button>
+              </MenuItem>
+            </MenuInside>
+          </Menu>
         </NavItem>
       </Nav>
     )
