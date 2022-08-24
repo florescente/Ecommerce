@@ -3,6 +3,7 @@ import Link from 'next/link'
 import { styled } from '../../styles/stitches.config'
 import Avatar from '../Avatar'
 import Button from '../Button'
+import Input from '../Input'
 import { Menu, MenuItem, Menutrigger, MenuSeparator, MenuInside } from '../Menu'
 
 export const Nav: any = styled('ul', {
@@ -12,7 +13,7 @@ export const Nav: any = styled('ul', {
   backgroundColor: 'Azure',
   paddingTop: 8,
   paddingBottom: 8,
-  justifyContent: 'space-between',
+  justifyContent: 'space-around',
 })
 
 export const NavItem: any = styled('li', {
@@ -30,6 +31,12 @@ function Navbar() {
       <Nav>
         <NavItem>
           <Link href="/second">Second Page</Link>
+        </NavItem>
+        <NavItem>
+          <Input placeholder="Search" />
+          <Button type="button" size="small">
+            OK
+          </Button>
         </NavItem>
         <NavItem>
           <Menu>
