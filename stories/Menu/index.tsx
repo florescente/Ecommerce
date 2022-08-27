@@ -24,7 +24,10 @@ const MenuItem = styled(MenuPrimitive.Item, {
     color: 'white',
   },
 })
-const Menutrigger = styled(MenuPrimitive.Trigger, {})
+const Menutrigger = styled(MenuPrimitive.Trigger, {
+  borderRadius: '100%',
+  borderWidth: 0.2,
+})
 const MenuPortal = styled(MenuPrimitive.Portal, {})
 const MenuContent = styled(MenuPrimitive.Content, {
   minWidth: 220,

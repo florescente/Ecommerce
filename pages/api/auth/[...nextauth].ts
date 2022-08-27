@@ -23,4 +23,10 @@ export default NextAuth({
     }),
   ],
   adapter: PrismaAdapter(prisma),
+  theme: {
+    colorScheme: 'light', // "auto" | "dark" | "light"
+    brandColor: '#ee82ee', // Hex color code
+    logo: '/vercel.svg', // Absolute URL to image
+    buttonText: '#fff', // Hex color code
+  },
 })
