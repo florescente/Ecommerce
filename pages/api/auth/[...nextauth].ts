@@ -2,8 +2,10 @@ import NextAuth from 'next-auth'
 import GithubProvider from 'next-auth/providers/github'
 import GoogleProvider from 'next-auth/providers/google'
 import FacebookProvider from 'next-auth/providers/facebook'
-import { MongoDBAdapter } from '@next-auth/mongodb-adapter'
-import clientPromise from './lib/mongodb'
+import { PrismaClient } from '@prisma/client'
+import { PrismaAdapter } from '@next-auth/prisma-adapter'
+
+const prisma = new PrismaClient()
 
 export default NextAuth({
   providers: [
@@ -20,8 +22,5 @@ export default NextAuth({
       clientSecret: process.env.GITHUB_SECRET!,
     }),
   ],
-  pages: {
-    signIn: '/login',
-  },
-  adapter: MongoDBAdapter(clientPromise),
+  adapter: PrismaAdapter(prisma),
 })
