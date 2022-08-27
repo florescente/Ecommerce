@@ -2,10 +2,8 @@ import NextAuth from 'next-auth'
 import GithubProvider from 'next-auth/providers/github'
 import GoogleProvider from 'next-auth/providers/google'
 import FacebookProvider from 'next-auth/providers/facebook'
-import { PrismaClient } from '@prisma/client'
+import prisma from '../../../lib/prisma'
 import { PrismaAdapter } from '@next-auth/prisma-adapter'
-
-const prisma = new PrismaClient()
 
 export default NextAuth({
   providers: [
@@ -24,9 +22,9 @@ export default NextAuth({
   ],
   adapter: PrismaAdapter(prisma),
   theme: {
-    colorScheme: 'light', // "auto" | "dark" | "light"
-    brandColor: '#ee82ee', // Hex color code
-    logo: '/vercel.svg', // Absolute URL to image
-    buttonText: '#fff', // Hex color code
+    colorScheme: 'light',
+    brandColor: '#ee82ee',
+    logo: '/vercel.svg',
+    buttonText: '#fff',
   },
 })
