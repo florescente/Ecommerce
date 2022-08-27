@@ -35,7 +35,7 @@ export const StyledFallback = styled(AvatarPrimitive.Fallback, {
 function Avatar({ src, alt }: { src: string; alt: string | undefined }) {
   return (
     <StyledAvatar>
-      <StyledImage src={src} alt={alt} />
+      <StyledImage src={src} alt={alt} referrerPolicy="no-referrer" />
       <StyledFallback delayMs={600}>{alt}</StyledFallback>
     </StyledAvatar>
   )
