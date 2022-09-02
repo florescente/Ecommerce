@@ -1,13 +1,14 @@
 import { signIn, signOut, useSession } from 'next-auth/react'
-import Link from 'next/link'
 import { styled } from '../../styles/stitches.config'
 import Avatar from '../Avatar'
 import Button from '../Button'
 import Input from '../Input'
 import { Menu, MenuItem, Menutrigger, MenuSeparator, MenuInside } from '../Menu'
+import NavigationMenuDemo from '../Routes'
 
 export const Header: any = styled('header', {
   display: 'flex',
+  flexDirection: 'column',
   backgroundColor: 'Azure',
 })
 
@@ -19,18 +20,6 @@ export const Navigation: any = styled('nav', {
   maxWidth: 980,
   padding: 8,
   margin: 'auto',
-})
-
-export const Nav: any = styled('ul', {
-  display: 'flex',
-  alignItems: 'center',
-  justifyContent: 'flex-start',
-  listStyle: 'none',
-})
-
-export const NavItem: any = styled('li', {
-  display: 'flex',
-  marginRight: 16,
 })
 
 function Navbar() {
@@ -48,17 +37,6 @@ function Navbar() {
       <Header>
         <Navigation>
           <img src="/vercel.svg" alt="logo" width={100} />
-          <Nav>
-            <NavItem>
-              <Link href="/second">Second Page</Link>
-            </NavItem>
-            <NavItem>
-              <Link href="/second">Second Page</Link>
-            </NavItem>
-            <NavItem>
-              <Link href="/second">Second Page</Link>
-            </NavItem>
-          </Nav>
           <div>
             <Input placeholder="Search" />
             <Button type="button" size="small">
@@ -83,22 +61,16 @@ function Navbar() {
             </MenuInside>
           </Menu>
         </Navigation>
+        <NavigationMenuDemo />
       </Header>
     )
   }
   return (
     <Header>
       <Navigation>
-        <Nav>
-          <NavItem>
-            <Link href="/second">Second Page</Link>
-          </NavItem>
-          <NavItem>
-            <Button type="button" size="small" onClick={() => signIn()}>
-              Sign In
-            </Button>
-          </NavItem>
-        </Nav>
+        <Button type="button" size="small" onClick={() => signIn()}>
+          Sign In
+        </Button>
       </Navigation>
     </Header>
   )
