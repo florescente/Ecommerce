@@ -1,13 +1,18 @@
+import 'reflect-metadata'
 import Cors from 'micro-cors'
 import { ApolloServer } from 'apollo-server-micro'
 import { MicroRequest } from 'apollo-server-micro/dist/types'
 import { ServerResponse } from 'http'
-import { typeDefs } from '../../graphql/schema'
-import { resolvers } from '../../graphql/resolvers'
+import { buildSchema } from 'type-graphql'
+import { PokemonResolver } from '../../graphql/resolvers/resolvers'
+
+export const schema = await buildSchema({
+  resolvers: [PokemonResolver],
+})
 
 const cors = Cors()
 
-const apolloserver = new ApolloServer({ typeDefs, resolvers })
+const apolloserver = new ApolloServer({ schema })
 
 const startServer = apolloserver.start()
 

@@ -21,6 +21,12 @@ export default NextAuth({
     }),
   ],
   adapter: PrismaAdapter(prisma),
+  callbacks: {
+    async session({ session, user }) {
+      session.id = user.id
+      return session
+    },
+  },
   theme: {
     colorScheme: 'light',
     brandColor: '#ee82ee',
